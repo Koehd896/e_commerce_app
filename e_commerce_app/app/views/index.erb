@@ -1,0 +1,8 @@
+<div class="flex-container">
+<% @products.each do |product| %>
+  <div>
+    <p><%= product.name %></p>
+    <p><%= product.price %></p>
+    <p><%= product.description %></p>
+<% end %>
+</div>
