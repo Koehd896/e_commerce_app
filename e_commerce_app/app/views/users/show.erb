@@ -1,0 +1,10 @@
+<h2>Welcome, <%= @user.name || @user.username %>! Here are the products you have listed:</h2>
+<div class="flex-container">
+<% @user.products.each do |product| %>
+  <div>
+    <p id="product-name"><%= product.name %></p>
+    <p id="product-price"> <%= product.price %></p>
+    <p id="product-description"><%= product.description %></p>
+  </div>
+<% end %>
+</div>

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(username: params[:username-email], email: params[:username-email])
+    user = User.find_by(username: params["username-email"]) || User.find_by(email: params["username-email"])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       "you have successfully logged in!"
@@ -35,6 +35,11 @@ class UsersController < ApplicationController
     session.clear
     redirect to '/'
     # add logout button to user profile page
+  end
+
+  get '/users/:id' do
+    @user = User.find(params[:id])
+    erb :'users/show'
   end
 
 

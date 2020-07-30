@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
     if !params.values.include?("")
       new_product = Product.new(params[:product])
       new_product.user = User.find(session[:user_id])
+      new_product.save
+      # redirect to '/products/:id'
     else
       redirect to '/products/new'
     end
