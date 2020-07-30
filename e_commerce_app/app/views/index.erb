@@ -1,9 +1,19 @@
 <div class="flex-container">
+<% if logged_in? %>
+  <a href="/users/<%= current_user.id %>/cart" %>View Cart</a>
+<% end %>
 <% @products.each do |product| %>
   <div>
     <p id="product-name"><%= product.name %></p>
     <p id="product-price"> <%= product.price %></p>
     <p id="product-description"><%= product.description %></p>
+    <% if logged_in? %>
+      <form method="post" action="/users/<%= current_user.id %>/cart">
+        <input type="hidden" id="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="add_product_id" value="<%= product.id %>">
+        <input type="submit" value="Add To Cart">
+      </form>
+    <% end %>
   </div>
 <% end %>
 </div>

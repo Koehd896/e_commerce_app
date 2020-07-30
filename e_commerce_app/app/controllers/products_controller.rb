@@ -44,7 +44,6 @@ class ProductsController < ApplicationController
   end
 
   delete '/products/:id' do
-    binding.pry
     Product.find(params[:id]).destroy
     user = current_user
     redirect to "/users/#{user.id}"
