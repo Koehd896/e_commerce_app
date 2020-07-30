@@ -21,12 +21,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  get '/produts/:id/edit' do
+  get '/products/:id/edit' do
     @product = Product.find(params[:id])
     if !session[:user_id] || @product.user != User.find(session[:user_id])
       redirect to '/login'
     else
-      erb : "/products/#{@product.id}/edit"
+      erb :'/products/edit'
     end
   end
 
@@ -34,10 +34,17 @@ class ProductsController < ApplicationController
     if !params[:product].values.include?("")
       product = Product.find(params[:id])
       product.update(params[:product])
-      # redirect to '/products/:id'
+      redirect to "/users/#{User.find(session[:user_id]).id}"
     else
       redirect to "/products/#{product.id}/edit"
     end
+  end
+
+  delete '/products/:id' do
+    binding.pry
+    Product.find(params[:id]).destroy
+    user = User.find(session[:user_id])
+    redirect to "/users/#{user.id}"
   end
 
 end

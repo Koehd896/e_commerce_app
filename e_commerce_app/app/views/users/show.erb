@@ -5,6 +5,13 @@
     <p id="product-name"><%= product.name %></p>
     <p id="product-price"> <%= product.price %></p>
     <p id="product-description"><%= product.description %></p>
+    <p><a href="/products/<%= product.id %>/edit">Edit Product</a></p>
+    <p>
+      <form method="post" action="/products/<%= product.id %>">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Item">
+      </form>
+    </p>
   </div>
 <% end %>
 </div>

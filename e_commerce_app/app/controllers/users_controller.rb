@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       "you have successfully logged in!"
-      # redirect to '/'
+      # redirect to "/users/#{user.id}"
     else
       redirect to '/login'
       # show error message
