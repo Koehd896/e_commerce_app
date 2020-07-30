@@ -1,4 +1,4 @@
-<h2>Welcome, <%= @user.name || @user.username %>! Here are the products you have listed:</h2>
+<h2>Welcome, <%= @user.name.capitalize || @user.username %>! Here are the products you have listed:</h2>
 <div class="flex-container">
 <% @user.products.each do |product| %>
   <div>
@@ -8,3 +8,6 @@
   </div>
 <% end %>
 </div>
+<form method="post" action="/logout">
+  <input type="submit" value="Log Out">
+</form>
