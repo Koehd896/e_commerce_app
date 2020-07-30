@@ -1,6 +1,9 @@
 <div class="flex-container">
 <% if logged_in? %>
   <a href="/users/<%= current_user.id %>/cart" %>View Cart</a>
+  <form method="post" action="/logout">
+    <input type="submit" value="Log Out">
+  </form>
 <% end %>
 <% @products.each do |product| %>
   <div>

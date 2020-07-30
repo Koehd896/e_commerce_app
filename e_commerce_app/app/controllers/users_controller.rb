@@ -5,11 +5,16 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if !params.values[1..-1].include?("") && params[:user][:password] == params[:confirm_password]
+    filled_in = !params.values[1..-1].include?("")
+    confirmed_password = params[:user][:password] == params[:confirm_password]
+    unique_usernmae_email = !User.all.find do |user| 
+      user.username ==  params[:user][:username] || user.email == params[:user][:email]
+    end
+
+    if filled_in && confirmed_password && unique_usernmae_email
       new_user = User.create(params[:user])
       Cart.create(user_id: new_user.id)
-      "you have successfully created an account!"
-      # redirect to '/users...'
+      redirect to '/'
     else
       redirect to '/signup'
       # add error message here
@@ -25,7 +30,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       "you have successfully logged in!"
-      # redirect to "/users/#{user.id}"
+      redirect to '/'
     else
       redirect to '/login'
       # show error message
