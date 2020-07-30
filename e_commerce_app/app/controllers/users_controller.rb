@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if !params.values[1..-1].include?("") && params[:user][:password] == params[:confirm_password]
-      User.create(params[:user])
+      new_user = User.create(params[:user])
+      Cart.create(user_id: new_user.id)
       "you have successfully created an account!"
       # redirect to '/users...'
     else
