@@ -31,5 +31,11 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/logout' do
+    session.clear
+    redirect to '/'
+    # add logout button to user profile page
+  end
+
 
 end
