@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
+  
+  def current_user
+    User.find(session[:user_id])
+  end
 
   get '/products/new' do
-    # add login validation
     if session[:user_id]
       erb :'products/new'
     else
@@ -13,9 +16,9 @@ class ProductsController < ApplicationController
   post '/products' do
     if !params[:product].values.include?("")
       new_product = Product.new(params[:product])
-      new_product.user = User.find(session[:user_id])
+      new_product.user = current_user
       new_product.save
-      # redirect to '/products/:id'
+      redirect to "/users/#{current_user.id}"
     else
       redirect to '/products/new'
     end
@@ -23,7 +26,7 @@ class ProductsController < ApplicationController
 
   get '/products/:id/edit' do
     @product = Product.find(params[:id])
-    if !session[:user_id] || @product.user != User.find(session[:user_id])
+    if !session[:user_id] || @product.user != current_user
       redirect to '/login'
     else
       erb :'/products/edit'
@@ -34,7 +37,7 @@ class ProductsController < ApplicationController
     if !params[:product].values.include?("")
       product = Product.find(params[:id])
       product.update(params[:product])
-      redirect to "/users/#{User.find(session[:user_id]).id}"
+      redirect to "/users/#{current_user.id}"
     else
       redirect to "/products/#{product.id}/edit"
     end
@@ -43,7 +46,7 @@ class ProductsController < ApplicationController
   delete '/products/:id' do
     binding.pry
     Product.find(params[:id]).destroy
-    user = User.find(session[:user_id])
+    user = current_user
     redirect to "/users/#{user.id}"
   end
 
