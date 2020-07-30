@@ -15,4 +15,21 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/login' do
+    erb :'users/login'
+  end
+
+  post '/login' do
+    user = User.find_by(username: params[:username-email], email: params[:username-email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      "you have successfully logged in!"
+      # redirect to '/'
+    else
+      redirect to '/login'
+      # show error message
+    end
+  end
+
+
 end
