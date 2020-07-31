@@ -3,8 +3,8 @@
 <% @user.products.each do |product| %>
   <div>
     <p id="product-name"><%= product.name %></p>
-    <p id="product-price"> <%= product.price %></p>
-    <p id="product-description"><%= product.description %></p>
+    <p id="product-price">Price: $<%= product.price %></p>
+    <p id="product-description">Description:<br><%= product.description %></p>
     <p><a href="/products/<%= product.id %>/edit">Edit Product</a></p>
     <p>
       <form method="post" action="/products/<%= product.id %>">

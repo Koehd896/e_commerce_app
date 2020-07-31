@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     if filled_in && confirmed_password && unique_usernmae_email
       new_user = User.create(params[:user])
       Cart.create(user_id: new_user.id)
+      session[:user_id] = new_user.id
       redirect to '/'
     else
       redirect to '/signup'

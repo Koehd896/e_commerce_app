@@ -4,12 +4,16 @@
   <form method="post" action="/logout">
     <input type="submit" value="Log Out">
   </form>
+  <a href="/users/<%= current_user.id %>">My Profile</a>
+<% else %>
+  <a href="/signup">Sign Up</a>
+  <a href="/login">Log In</a>
 <% end %>
 <% @products.each do |product| %>
   <div>
     <p id="product-name"><%= product.name %></p>
-    <p id="product-price"> <%= product.price %></p>
-    <p id="product-description"><%= product.description %></p>
+    <p id="product-price">Price: $<%= product.price %></p>
+    <p id="product-description">Description:<br><%= product.description %></p>
     <% if logged_in? %>
       <form method="post" action="/users/<%= current_user.id %>/cart">
         <input type="hidden" id="hidden" name="_method" value="PATCH">

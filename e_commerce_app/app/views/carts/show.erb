@@ -3,8 +3,8 @@
 <% @user.cart.products.each do |product| %>
   <div>
     <p id="product-name"><%= product.name %></p>
-    <p id="product-price"> <%= product.price %></p>
-    <p id="product-description"><%= product.description %></p>
+    <p id="product-price">Price: $<%= product.price %></p>
+    <p id="product-description">Description:<br><%= product.description %></p>
     <form method="post" action="/users/<%= @user.id %>/cart">
       <input type="hidden" id="hidden" name="_method" value="PATCH">
       <input type="hidden" name="delete_product_id" value="<%= product.id %>">
