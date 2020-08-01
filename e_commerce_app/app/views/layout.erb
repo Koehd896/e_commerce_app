@@ -39,7 +39,6 @@
           <% if logged_in? %>
             <li><a href="/users/<%= current_user.id %>/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
           <% end %>
-          <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <% if logged_in? %>
             <li>
               <form class="logout-form" method="post" action="/logout">
@@ -49,6 +48,7 @@
             </li>
           <% else %>
             <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <% end %>
         </ul>
       </div>

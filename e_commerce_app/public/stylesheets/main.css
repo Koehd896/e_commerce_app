@@ -85,13 +85,13 @@
   .flex-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
   }
   
   .flex-container div {
     width: 200px;
-    margin: 25px;
     padding: 15px;
+    margin: 15px;
     background-color: rgb(230, 230, 230);
     -moz-box-shadow: 0 0 5px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,.3);
