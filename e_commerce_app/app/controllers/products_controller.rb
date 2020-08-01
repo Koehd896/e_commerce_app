@@ -1,8 +1,4 @@
 class ProductsController < ApplicationController
-  
-  def current_user
-    User.find(session[:user_id])
-  end
 
   get '/products/new' do
     if session[:user_id]
@@ -22,6 +18,22 @@ class ProductsController < ApplicationController
     else
       redirect to '/products/new'
     end
+  end
+
+  get '/search/:ids' do
+    ids = params[:ids].split(",")
+    @products = Product.find(ids)
+    erb :index
+  end
+
+  post '/search' do
+    products = Product.all.select do |product|
+      product.name.include?(params[:search]) || product.description.include?(params[:search])
+    end
+    product_ids = products.map do |product|
+      product.id
+    end.join(",")
+    redirect to "/search/#{product_ids}"
   end
 
   get '/products/:id/edit' do
