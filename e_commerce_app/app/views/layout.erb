@@ -32,8 +32,9 @@
           <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <% if logged_in? %>
             <li>
-              <form id="logout-form" method="post" action="/logout">
-                <input id="logout-button" type="submit" value="Log Out">
+              <form class="logout-form" method="post" action="/logout">
+                <span class="glyphicon glyphicon-log-out"></span>
+                <input class="logout-button" type="submit" value="Log Out">
               </form>
             </li>
           <% else %>
@@ -43,15 +44,20 @@
       </div>
     </nav>
 
-    
     <div class="wrapper">
-
         <%= yield %>
-
-      <footer class="branding">
-        <small>&copy; 2020 <strong>ECommerceApp</strong></small>
-      </footer>
     </div>
+
+    <footer>
+      <div class="container">
+        <small>&copy; 2020 <strong>ECommerceApp</strong></small>
+      </div>
+      <div class="container">
+        <% if logged_in? %>
+
+        <% end %>
+      </div>
+    </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!--[if lt IE 7]>
