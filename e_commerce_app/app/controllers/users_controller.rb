@@ -5,20 +5,30 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    filled_in = !params.values[1..-1].include?("")
-    confirmed_password = params[:user][:password] == params[:confirm_password]
-    unique_usernmae_email = !User.all.find do |user| 
-      user.username ==  params[:user][:username] || user.email == params[:user][:email]
+    error = false
+    params[:user].each do |key, value|    
+      if key != "name"
+        if value.empty? 
+          flash[key] = "*You must fill out the #{key} field"
+          error = true
+        end
+      end
     end
 
-    if filled_in && confirmed_password && unique_usernmae_email
+    # unique_usernmae_email = !User.all.find do |user| 
+    #   user.username ==  params[:user][:username] || user.email == params[:user][:email]
+    # end
+
+    # if params[:user][:password] == params[:confirm_password]
+    #   flash[:confirm_password] = "Your passwords do not match, please try again"
+    # end
+    if error
+      redirect to '/signup'
+    else
       new_user = User.create(params[:user])
       Cart.create(user_id: new_user.id)
       session[:user_id] = new_user.id
       redirect to '/'
-    else
-      redirect to '/signup'
-      # add error message here
     end
   end
 
