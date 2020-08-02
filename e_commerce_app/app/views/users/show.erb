@@ -1,18 +1,24 @@
 <h2>Welcome, <%= @user.name.capitalize || @user.username %>! Here are the products you have listed:</h2>
 <div class="flex-container">
 <% @user.products.each do |product| %>
-  <div>
-    <p id="product-name"><%= product.name %></p>
-    <p id="product-price">Price: $<%= product.price %></p>
-    <p id="product-description">Description:<br><%= product.description %></p>
-    <p><a href="/products/<%= product.id %>/edit">Edit Product</a></p>
-    <p>
-      <form method="post" action="/products/<%= product.id %>">
-        <input type="hidden" id="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete Item">
-      </form>
-    </p>
+  <div class="card flex-item">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
+        <li class="list-group-item">Price: $<%= product.price %></li>
+        <li class="list-group-item">Description:<br><%= product.description %></li>
+        <li class="list-group-item"><a href="/products/<%= product.id %>/edit">Edit Product</a></li>
+        <li>
+          <form method="post" action="/products/<%= product.id %>">
+            <input type="hidden" id="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete Item" class="btn btn-primary" id="cart-button">
+          </form>
+        </li>
+      </ul>
+    </div>
   </div>
 <% end %>
 </div>
-<a href="/products/new">List New Product</a>
+<form method="get" action="/products/new">
+<input type="submit" name="List New Product" class="btn btn-primary" id="cart-button">
+</form>

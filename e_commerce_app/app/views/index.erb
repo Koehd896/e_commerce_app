@@ -1,16 +1,21 @@
 <div class="flex-container">
 <% @products.each do |product| %>
-  <div>
-    <p id="product-name"><%= product.name %></p>
-    <p id="product-price">Price: $<%= product.price %></p>
-    <p id="product-description">Description:<br><%= product.description %></p>
-    <% if logged_in? %>
-      <form method="post" action="/users/<%= current_user.id %>/cart">
-        <input type="hidden" id="hidden" name="_method" value="PATCH">
-        <input type="hidden" name="add_product_id" value="<%= product.id %>">
-        <input type="submit" value="Add To Cart">
-      </form>
-    <% end %>
+  <div class="card flex-item">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
+        <li class="list-group-item">Price: $<%= product.price %></li>
+        <li class="list-group-item">Description:<br><%= product.description %></li>
+        <% if logged_in? %>
+          <form method="post" action="/users/<%= current_user.id %>/cart">
+            <input type="hidden" id="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="add_product_id" value="<%= product.id %>">
+            <input type="submit" value="Add To Cart" class="btn btn-primary" id="cart-button">
+          </form>
+        <% end %>
+      </ul>
+
+    </div>
   </div>
 <% end %>
 </div>

@@ -1,15 +1,20 @@
 <h2><%= @user.name.capitalize || @user.username %>'s Cart:</h2>
+
 <div class="flex-container">
 <% @user.cart.products.each do |product| %>
-  <div>
-    <p id="product-name"><%= product.name %></p>
-    <p id="product-price">Price: $<%= product.price %></p>
-    <p id="product-description">Description:<br><%= product.description %></p>
-    <form method="post" action="/users/<%= @user.id %>/cart">
-      <input type="hidden" id="hidden" name="_method" value="PATCH">
-      <input type="hidden" name="delete_product_id" value="<%= product.id %>">
-      <input type="submit" value="Remove From Cart">
-    </form>
+  <div class="card flex-item">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
+        <li class="list-group-item">Price: $<%= product.price %></li>
+        <li class="list-group-item">Description:<br><%= product.description %></li>
+        <form method="post" action="/users/<%= @user.id %>/cart">
+          <input type="hidden" id="hidden" name="_method" value="PATCH">
+          <input type="hidden" name="delete_product_id" value="<%= product.id %>">
+          <input type="submit" value="Remove From Cart" class="btn btn-primary" id="cart-button">
+        </form>
+      </ul>
+    </div>
   </div>
 <% end %>
 </div>
