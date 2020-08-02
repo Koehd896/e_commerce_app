@@ -12,10 +12,11 @@
 <% if flash["username"] %>
  <span id="flash-message"><%= flash["username"] %></span>
 <% end %>
-<% if flash["invalid_username"] %>
- <span id="flash-message"><%= flash["invalid_username"] %></span>
+<% if flash[:invalid_username] %>
+ <span id="flash-message"><%= flash[:invalid_username] %></span>
 <% end %>
 </div>
+
 
 <div class="form-group">
 <label for="user[email]">Email Address:</label>
@@ -23,24 +24,24 @@
 <% if flash["email"] %>
  <span id="flash-message"><%= flash["email"] %></span>
 <% end %>
-<% if flash["invalid_email"] %>
- <span id="flash-message"><%= flash["invalid_email"] %></span>
+<% if flash[:invalid_email] %>
+ <span id="flash-message"><%= flash[:invalid_email] %></span>
 <% end %>
 </div>
 
 <div class="form-group">
 <label for="user[password]">Create Password:</label>
 <input type="password" id="user[password]" name="user[password]" class="form-control">
-<% if flash["password"] %>
- <span id="flash-message"><%= flash["password"] %></span>
+<% if flash[:password] %>
+ <span id="flash-message"><%= flash[:password] %></span>
 <% end %>
 </div>
 
 <div class="form-group">
 <label for="confirm_password">Confirm Password:</label>
 <input type="password" id="confirm_password" name="confirm_password" class="form-control">
-<% if flash["confirm_password"] %>
- <span id="flash-message"><%= flash["confirm_password"] %></span>
+<% if flash[:confirm_password] %>
+ <span id="flash-message"><%= flash[:confirm_password] %></span>
 <% end %>
 </div>
 

@@ -22,14 +22,14 @@ class UsersController < ApplicationController
     invalid_email = User.all.find do |user| 
       user.email == params[:user][:email]
     end
-
+    
     if invalid_username 
-      flash[:invalid_username] = "*The username #{params[:user][:username]}is already taken"
+      flash[:invalid_username] = "*The username #{params[:user][:username]} is already taken"
       error = true
     end
 
     if invalid_email 
-      flash[:invalid_email] = "*The email #{params[:user][:email]}is already taken"
+      flash[:invalid_email] = "*The email #{params[:user][:email]} is already taken"
       error = true
     end
 
@@ -62,6 +62,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect to '/'
     else
+      flash[:login] = "*Please enter your username/email and password again"
       redirect to '/login'
       # show error message
     end
