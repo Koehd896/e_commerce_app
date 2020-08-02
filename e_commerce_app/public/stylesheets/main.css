@@ -146,6 +146,10 @@
     color: red;
   }
 
+  .form-container {
+    padding-right: 70%;
+  }
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

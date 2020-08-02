@@ -15,13 +15,29 @@ class UsersController < ApplicationController
       end
     end
 
-    # unique_usernmae_email = !User.all.find do |user| 
-    #   user.username ==  params[:user][:username] || user.email == params[:user][:email]
-    # end
+    invalid_username = User.all.find do |user| 
+      user.username == params[:user][:username]
+    end
 
-    # if params[:user][:password] == params[:confirm_password]
-    #   flash[:confirm_password] = "Your passwords do not match, please try again"
-    # end
+    invalid_email = User.all.find do |user| 
+      user.email == params[:user][:email]
+    end
+
+    if invalid_username 
+      flash[:invalid_username] = "*The username #{params[:user][:username]}is already taken"
+      error = true
+    end
+
+    if invalid_email 
+      flash[:invalid_email] = "*The email #{params[:user][:email]}is already taken"
+      error = true
+    end
+
+    if params[:user][:password] != params[:confirm_password]
+      flash[:confirm_password] = "*Your passwords do not match, please try again"
+      error = true
+    end
+
     if error
       redirect to '/signup'
     else
