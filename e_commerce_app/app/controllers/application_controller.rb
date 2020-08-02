@@ -1,4 +1,5 @@
 require './config/environment'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -6,10 +7,12 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-		set :session_secret, "commercesecret"
+    set :session_secret, "commercesecret"
+    register Sinatra::Flash
   end
 
   get "/" do
+    flash[:test] = "it works"
     @products = Product.all
     erb :index
   end
