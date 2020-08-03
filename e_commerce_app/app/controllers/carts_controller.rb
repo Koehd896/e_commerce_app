@@ -19,12 +19,13 @@ class CartsController < ApplicationController
   # end
 
   patch '/users/:id/cart' do
+    cart_id = Cart.find_by(user_id: params[:id]).id
     if params[:delete_product_id]
-      Product.find(params[:delete_product_id]).update(cart_id: nil)
+      product_id = Product.find(params[:delete_product_id]).id
+      ProductCart.create(product_id: product_id, cart_id: cart_id)
     else
-      product = Product.find(params[:add_product_id])
-      product.update(cart_id: Cart.find_by(user_id: params[:id]).id)
-      
+      product_id = Product.find(params[:add_product_id]).id
+      ProductCart.create(product_id: product_id, cart_id: cart_id)      
     end
     redirect to "/users/#{params[:id]}/cart"
   end
