@@ -9,15 +9,6 @@ class CartsController < ApplicationController
     end
   end
 
-  # post '/carts/new' do
-  #   if session[:user_id] 
-  #     Cart.create(user_id: session[:user_id])
-  #     redirect to "/users/#{session[:user_id]}"
-  #   else
-  #     redirect to '/login'
-  #   end
-  # end
-
   patch '/users/:id/cart' do
     cart = Cart.find_by(user_id: params[:id])
 
@@ -34,8 +25,10 @@ class CartsController < ApplicationController
         end
 
         users.each do |user|
-          message = "'#{product.name}' has been sold and is no longer in your cart"
-          Notification.create(message: message, user_id: user.id)
+          if user.id != params[:id]
+            message = "'#{product.name}' has been sold and is no longer in your cart"
+            Notification.create(message: message, user_id: user.id)
+          end
         end
 
         product_cart = ProductCart.find_by(product_id: product.id)

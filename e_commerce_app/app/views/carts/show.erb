@@ -5,10 +5,14 @@
 <% end %>
 <h2><%= greeting %>'s Cart:</h2>
 
-<% if !@user.notifications.emtpy? %>
+<% if !@user.notifications.empty? %>
   <% @user.notifications.each do |notification| %>
-    
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong><%= notification.message %></strong> 
+    </div>
   <% end %>
+  <% clear_notifications(@user) %>
 <% end %>
 
 <div class="flex-container">
@@ -39,7 +43,7 @@
     <form method="post" action="/users/<%= current_user.id %>/cart">
     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="checkout" value="true">
-    <input type="submit" value="Checkout" class="btn btn-primary" id="checkout-button">
+    <input type="submit" value="Checkout" class="btn btn-primary">
     </form>
   </div>
 </div>

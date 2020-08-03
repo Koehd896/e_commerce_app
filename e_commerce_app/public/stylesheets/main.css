@@ -162,10 +162,6 @@
     margin: 10px;
   }
 
-  #checkout-button {
-    float: right;
-  }
-
   .cart-footer {
     display: flex;
   }
