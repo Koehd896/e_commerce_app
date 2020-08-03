@@ -1,4 +1,9 @@
-<h2><%= @user.name.capitalize || @user.username %>'s Cart:</h2>
+<% if @user.name == "" %>
+<% greeting = @user.username %>
+<% else %>
+<% greeting = @user.name %>
+<% end %>
+<h2><%= greeting %>'s Cart:</h2>
 
 <div class="flex-container">
 <% @user.cart.products.each do |product| %>

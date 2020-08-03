@@ -12,7 +12,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    binding.pry
     @products = Product.all
     erb :index
   end
