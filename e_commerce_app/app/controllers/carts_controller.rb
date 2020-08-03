@@ -20,9 +20,10 @@ class CartsController < ApplicationController
 
   patch '/users/:id/cart' do
     cart = Cart.find_by(user_id: params[:id])
+
     if params[:delete_product_id]
       product_id = Product.find(params[:delete_product_id]).id
-      ProductCart.create(product_id: product_id, cart_id: cart.id)
+      ProductCart.find_by(product_id: product_id).destroy
     elsif params[:add_product_id]
       product_id = Product.find(params[:add_product_id]).id
       ProductCart.create(product_id: product_id, cart_id: cart.id)    
@@ -31,11 +32,15 @@ class CartsController < ApplicationController
         users = product.carts.map do |cart|
           cart.user
         end
-        users.each
 
+        users.each do |user|
+          message = "'#{product.name}' has been sold and is no longer in your cart"
+          Notification.create(message: message, user_id: user.id)
+        end
 
         product_cart = ProductCart.find_by(product_id: product.id)
         product_cart.destroy
+        product.destroy
       end
     end
     redirect to "/users/#{params[:id]}/cart"

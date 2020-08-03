@@ -5,6 +5,12 @@
 <% end %>
 <h2><%= greeting %>'s Cart:</h2>
 
+<% if !@user.notifications.emtpy? %>
+  <% @user.notifications.each do |notification| %>
+    
+  <% end %>
+<% end %>
+
 <div class="flex-container">
 <% @user.cart.products.each do |product| %>
   <div class="card flex-item">
