@@ -9,14 +9,14 @@ class CartsController < ApplicationController
     end
   end
 
-  post '/carts/new' do
-    if session[:user_id] 
-      Cart.create(user_id: session[:user_id])
-      redirect to "/users/#{session[:user_id]}"
-    else
-      redirect to '/login'
-    end
-  end
+  # post '/carts/new' do
+  #   if session[:user_id] 
+  #     Cart.create(user_id: session[:user_id])
+  #     redirect to "/users/#{session[:user_id]}"
+  #   else
+  #     redirect to '/login'
+  #   end
+  # end
 
   patch '/users/:id/cart' do
     if params[:delete_product_id]
