@@ -23,3 +23,17 @@
   </div>
 <% end %>
 </div>
+
+<div class="cart-footer">
+  <div class="cart-footer-item">
+    <a href="/"><button type="button" class="btn btn-primary link-button">Continue Shopping</button></a>
+  </div>
+
+  <div class="cart-footer-item">
+    <form method="post" action="/users/<%= current_user.id %>/cart">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="checkout" value="true">
+    <input type="submit" value="Checkout" class="btn btn-primary" id="checkout-button">
+    </form>
+  </div>
+</div>

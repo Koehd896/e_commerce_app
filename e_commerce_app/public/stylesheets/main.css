@@ -162,6 +162,19 @@
     margin: 10px;
   }
 
+  #checkout-button {
+    float: right;
+  }
+
+  .cart-footer {
+    display: flex;
+  }
+
+  .cart-footer-item {
+    margin: 20px;
+  }
+
+
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
