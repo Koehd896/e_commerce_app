@@ -21,8 +21,10 @@ class ProductsController < ApplicationController
   end
 
   get '/search/:ids' do
+    @filter = true
     ids = params[:ids].split(",")
-    @products = Product.find(ids)
+    @products = []
+    ids.each {|id| @products << Product.find(id)}
     erb :index
   end
 
@@ -30,10 +32,23 @@ class ProductsController < ApplicationController
     products = Product.all.select do |product|
       product.name.include?(params[:search]) || product.description.include?(params[:search])
     end
-    product_ids = products.map do |product|
-      product.id
-    end.join(",")
+    product_ids = products.map {|product| product.id}.join(",")
     redirect to "/search/#{product_ids}"
+  end
+
+  post '/search/:ids/:filter' do
+    case params[:filter]
+    when "price_low_to_high"
+      products = Product.find(params[:ids].split(",").map {|n| n.to_i})
+      sorted_products = products.sort_by {|product| product.price}
+      product_ids = sorted_products.map {|product| product.id}.join(",")
+      redirect to "search/#{product_ids}"
+    when "price_high_to_low"
+      products = Product.find(params[:ids].split(",").map {|n| n.to_i})
+      sorted_products = products.sort_by {|product| product.price}.reverse!
+      product_ids = sorted_products.map {|product| product.id}.join(",")
+      redirect to "search/#{product_ids}"
+    end
   end
 
   get '/products/:id/edit' do

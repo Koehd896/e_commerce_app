@@ -12,7 +12,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    flash[:test] = "it works"
     @products = Product.all
     erb :index
   end
