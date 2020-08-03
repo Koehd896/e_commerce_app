@@ -10,7 +10,16 @@
   <input type="password" id="username-email" name="password" class="form-control">
   </div>
   <% if flash[:login] %>
-    <span class="flash-message"><%= flash[:login] %></span>
+  <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong><%= flash[:login] %></strong> 
+  </div>
+  <% end %>
+  <% if flash[:login] %>
+  <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong><%= flash[:login_error] %></strong> 
+  </div>
   <% end %>
 
   <input type="submit" value="Log In" class="btn btn-primary">

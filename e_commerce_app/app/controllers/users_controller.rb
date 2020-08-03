@@ -64,7 +64,6 @@ class UsersController < ApplicationController
     else
       flash[:login] = "*Please enter your username/email and password again"
       redirect to '/login'
-      # show error message
     end
   end
 

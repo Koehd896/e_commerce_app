@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
     if session[:user_id]
       erb :'products/new'
     else
+      flash[:login_error] = "You must be logged in to list a product"
       redirect to '/login'
-      # display error message
     end
   end
 
