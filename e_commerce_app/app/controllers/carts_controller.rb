@@ -19,17 +19,25 @@ class CartsController < ApplicationController
       product_id = Product.find(params[:add_product_id]).id
       ProductCart.create(product_id: product_id, cart_id: cart.id)    
     elsif params[:checkout]
+      
       cart.products.each do |product|
-        users = product.carts.map do |cart|
+        cart_users = product.carts.map do |cart|
           cart.user
         end
 
-        users.each do |user|
+        cart_users.each do |user|
           if user.id != params[:id]
-            message = "'#{product.name}' has been sold and is no longer in your cart"
-            Notification.create(message: message, user_id: user.id)
+            sold = "'#{product.name}' has been sold and is no longer in your cart"
+            Notification.create(message: sold, user_id: user.id)
           end
         end
+
+        owner = product.user
+        price = "Congratulations! '#{product.name}' has sold. Your account has been credited with $#{product.price}"
+        Notification.create(message: price, user_id: owner.id)
+
+        new_balance = owner.balance + product.price
+        owner.update(balance: new_balance)
 
         product_cart = ProductCart.find_by(product_id: product.id)
         product_cart.destroy

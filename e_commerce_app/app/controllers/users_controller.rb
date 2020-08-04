@@ -42,6 +42,7 @@ class UsersController < ApplicationController
       redirect to '/signup'
     else
       new_user = User.create(params[:user])
+      new_user.update(balance: 0)
       Cart.create(user_id: new_user.id)
       session[:user_id] = new_user.id
       redirect to '/'
