@@ -3,6 +3,10 @@ class CartsController < ApplicationController
   get '/users/:id/cart' do
     if session[:user_id]
       @user = User.find(params[:id])
+      prices = @user.cart.products.map do |product|
+        product.price
+      end
+      @cart_total = prices.sum
       erb :'carts/show'
     else
       redirect to '/login'
@@ -19,7 +23,7 @@ class CartsController < ApplicationController
       product_id = Product.find(params[:add_product_id]).id
       ProductCart.create(product_id: product_id, cart_id: cart.id)    
     elsif params[:checkout]
-      
+      binding.pry
       cart.products.each do |product|
         cart_users = product.carts.map do |cart|
           cart.user
