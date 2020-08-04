@@ -8,7 +8,7 @@ products = [
   ["Beats Headphones", 150, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/BeatsHeadphones-2_%2847705430872%29.jpg/1200px-BeatsHeadphones-2_%2847705430872%29.jpg"],
   ["Electric Mixer", 125.5, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/White_KitchenAid_mixer_%28KSM150PSWH%29.jpg/1200px-White_KitchenAid_mixer_%28KSM150PSWH%29.jpg"],
   ["Stainless Steel Pan", 55.99, "https://upload.wikimedia.org/wikipedia/commons/5/5c/Pfanne_%28Edelstahl%29.jpg"],
-  ["Microwave", 46.99, "https://commons.wikimedia.org/wiki/File:Consumer_Reports_-_Kenmore_microwave_oven.tif#/media/File:Consumer_Reports_-_Kenmore_microwave_oven.tif"],
+  ["Microwave", 46.99, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Consumer_Reports_-_Kenmore_microwave_oven.tif/lossy-page1-1200px-Consumer_Reports_-_Kenmore_microwave_oven.tif.jpg"],
   ["Coffee Maker", 25.99, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Consumer_Reports_-_Zojirushi_coffeemaker_alt.tif/lossy-page1-1200px-Consumer_Reports_-_Zojirushi_coffeemaker_alt.tif.jpg"],
   ["Shoes", 20.35, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Black_Converse_sneakers.JPG/1200px-Black_Converse_sneakers.JPG"],
   ["Hat", 15.25, "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Under_armour.JPG/1200px-Under_armour.JPG"],
