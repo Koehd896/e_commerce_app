@@ -1,9 +1,9 @@
 <% if @user.name == "" %>
-<% greeting = @user.username %>
+<% name = @user.username %>
 <% else %>
-<% greeting = @user.name %>
+<% name = @user.name %>
 <% end %>
-<h2><%= greeting %>'s Cart:</h2>
+<h2><%= name %>'s Cart:</h2>
 
 <% if !@user.notifications.empty? %>
   <% @user.notifications.each do |notification| %>
@@ -15,23 +15,55 @@
   <% clear_notifications(@user) %>
 <% end %>
 
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Item:</th>
+      <th scope="col">Price:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.cart.products.each do |product| %>
+      <tr>
+        <th scope="row">
+
+      </tr>
+    <% end %>
+    
+
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="flex-container">
-<% @user.cart.products.each do |product| %>
-  <div class="card flex-item">
-    <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
-        <li class="list-group-item">Price: $<%= product.price %></li>
-        <li class="list-group-item">Description:<br><%= product.description %></li>
-        <form method="post" action="/users/<%= @user.id %>/cart">
-          <input type="hidden" id="hidden" name="_method" value="PATCH">
-          <input type="hidden" name="delete_product_id" value="<%= product.id %>">
-          <input type="submit" value="Remove From Cart" class="btn btn-primary" id="cart-button">
-        </form>
-      </ul>
+  <% @user.cart.products.each do |product| %>
+    <div class="card flex-item">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
+          <li class="list-group-item">Price: $<%= product.price %></li>
+          <li class="list-group-item">Description:<br><%= product.description %></li>
+          <form method="post" action="/users/<%= @user.id %>/cart">
+            <input type="hidden" id="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="delete_product_id" value="<%= product.id %>">
+            <input type="submit" value="Remove From Cart" class="btn btn-primary" id="cart-button">
+          </form>
+        </ul>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 </div>
 
 <div class="cart-footer">

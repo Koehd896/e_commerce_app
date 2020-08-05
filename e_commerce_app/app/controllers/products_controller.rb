@@ -20,20 +20,15 @@ class ProductsController < ApplicationController
     end
   end
 
-  get '/search/:ids' do
-    @filter = true
-    ids = params[:ids].split(",")
-    @products = []
-    ids.each {|id| @products << Product.find(id)}
-    erb :index
-  end
-
   post '/search' do
+    # allow search item to be part of product name (use regexp?)
     products = Product.all.select do |product|
       product.name.include?(params[:search]) || product.description.include?(params[:search])
     end
     product_ids = products.map {|product| product.id}.join(",")
-    redirect to "/search/#{product_ids}"
+    # account for no search results
+    # store params[:search] for later use
+    redirect to "/search/#{product_ids}/#{params[:search]}"
   end
 
   post '/search/:ids/:filter' do
@@ -58,6 +53,21 @@ class ProductsController < ApplicationController
     else
       erb :'/products/edit'
     end
+  end
+
+  get '/search/:ids' do
+    ids = params[:ids].split(",")
+    @products = []
+    ids.each {|id| @products << Product.find(id)}
+    erb :index
+  end
+
+  get '/search/:ids/:criteria' do
+    ids = params[:ids].split(",")
+    @products = []
+    @criteria = params[:criteria]
+    ids.each {|id| @products << Product.find(id)}
+    erb :index
   end
 
   patch '/products/:id' do

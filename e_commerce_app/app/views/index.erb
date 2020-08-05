@@ -1,18 +1,28 @@
-<% if @filter %>
-<div class="dropdown" id="filter">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Select Filter <span class="caret"></span>
-  </button>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-    <form class="dropdown-item" method="post" action="/search/<%= @products.map {|p| p.id}.join(",") %>/price_low_to_high">
-      <input type="submit" value="Price: Low to High">
-    </form>
-    <form class="dropdown-item" method="post" action="/search/<%= @products.map {|p| p.id}.join(",") %>/price_high_to_low">
-      <input type="submit" value="Price: High to Low">
-    </form>
-  </div>
+<div class="search-header">
+  
+    <div class="message">
+      <% if @cirteria %>
+        <h3>Showing results for '<%= @criteria %>':</h3>
+      <% else %>
+        <h3>Showing all Products:</h3>
+      <% end %>
+    </div>
+    
+    <div class="dropdown" id="filter">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select Filter <span class="caret"></span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <form class="dropdown-item" method="post" action="/search/<%= @products.map {|p| p.id}.join(",") %>/price_low_to_high">
+          <input type="submit" value="Price: Low to High">
+        </form>
+        <form class="dropdown-item" method="post" action="/search/<%= @products.map {|p| p.id}.join(",") %>/price_high_to_low">
+          <input type="submit" value="Price: High to Low">
+        </form>
+      </div>
+    </div>
+
 </div>
-<% end %>
 
 <div class="flex-container">
   <% @products.each do |product| %>
