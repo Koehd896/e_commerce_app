@@ -53,7 +53,7 @@
   }
 
   .search-header h3 {
-    margin: auto;
+    margin: 15px 0 0 0;
   }
 
   body::-webkit-scrollbar-track{

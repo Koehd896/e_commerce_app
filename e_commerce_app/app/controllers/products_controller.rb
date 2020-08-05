@@ -63,9 +63,9 @@ class ProductsController < ApplicationController
   end
 
   get '/search/:ids/:criteria' do
+    @criteria = params[:criteria]
     ids = params[:ids].split(",")
     @products = []
-    @criteria = params[:criteria]
     ids.each {|id| @products << Product.find(id)}
     erb :index
   end
