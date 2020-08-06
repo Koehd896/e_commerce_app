@@ -19,52 +19,23 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
+      <th scope="col">#</th>
       <th scope="col">Item:</th>
       <th scope="col">Price:</th>
     </tr>
   </thead>
   <tbody>
+    <% n = 0 %>
     <% @user.cart.products.each do |product| %>
       <tr>
-        <th scope="row">
-
+        <th scope="row"><%= n += 1 %></th>
+        <td><%= product.name %></td>
+        <td>$<%= product.price %></td>
       </tr>
     <% end %>
     
-
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
   </tbody>
 </table>
-
-<div class="flex-container">
-  <% @user.cart.products.each do |product| %>
-    <div class="card flex-item">
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
-          <li class="list-group-item">Price: $<%= product.price %></li>
-          <li class="list-group-item">Description:<br><%= product.description %></li>
-          <form method="post" action="/users/<%= @user.id %>/cart">
-            <input type="hidden" id="hidden" name="_method" value="PATCH">
-            <input type="hidden" name="delete_product_id" value="<%= product.id %>">
-            <input type="submit" value="Remove From Cart" class="btn btn-primary" id="cart-button">
-          </form>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-</div>
 
 <div class="cart-footer">
   <div class="cart-footer-item">

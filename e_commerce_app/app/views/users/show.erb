@@ -6,6 +6,7 @@
 <h2>Welcome, <%= greeting %>! Here are the products you have listed:</h2>
 <div class="flex-container">
 <% @user.products.each do |product| %>
+    
   <div class="card flex-item">
     <div class="card-body">
       <ul class="list-group list-group-flush">
