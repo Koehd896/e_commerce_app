@@ -188,6 +188,10 @@
     border-radius: 0;
   }
 
+  #logo {
+    padding: 1rem;
+  }
+
   #filter {
     float: right;
     margin: 10px;
