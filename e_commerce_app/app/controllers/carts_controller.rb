@@ -23,7 +23,6 @@ class CartsController < ApplicationController
       product_id = Product.find(params[:add_product_id]).id
       ProductCart.create(product_id: product_id, cart_id: cart.id)    
     elsif params[:checkout]
-      binding.pry
       cart.products.each do |product|
         cart_users = product.carts.map do |cart|
           cart.user
@@ -37,6 +36,7 @@ class CartsController < ApplicationController
         end
 
         owner = product.user
+        binding.pry
         price = "Congratulations! '#{product.name}' has sold. Your account has been credited with $#{product.price}"
         Notification.create(message: price, user_id: owner.id)
 
