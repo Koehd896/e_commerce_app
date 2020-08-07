@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar">
       <a class="navbar-brand" href="#" id="logo">
         <img src="https://koehdecommerce.s3.us-east-2.amazonaws.com/LogoMakr_2i6K6w.png" width="30" height="30" alt="e commerce logo">
       </a>
@@ -26,7 +26,10 @@
         </div>
         <% if logged_in? %>
           <ul class="nav navbar-nav">
-            <li><a href="/users/<%= current_user.id %>">Profile</a></li>
+            <li>
+              <a href="/users/<%= current_user.id %>">Profile</a>
+              <div class="navbar-bottom-border"></div>
+            </li>
           </ul>
         <% end %>
         <ul class="nav navbar-nav navbar-right">
@@ -41,10 +44,13 @@
             </div>
           </form>
           <% if logged_in? %>
-            <li><a href="/users/<%= current_user.id %>/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
+              <li>
+                <a href="/users/<%= current_user.id %>/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
+                <div class="navbar-bottom-border"></div>
+              </li>
           <% end %>
           <% if logged_in? %>
-            <li>
+            <li id="logout-navbar">
               <form class="logout-form" method="post" action="/logout">
                 <span class="glyphicon glyphicon-log-out"></span>
                 <input class="logout-button" type="submit" value="Log Out">

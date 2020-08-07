@@ -4,29 +4,25 @@
 <% greeting = @user.name %>
 <% end %>
 <h2>Welcome, <%= greeting %>! Here are the products you have listed:</h2>
+
 <div class="flex-container">
-<% @user.products.each do |product| %>
-    
-  <div class="card flex-item">
-    <div class="card-body">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><h5 class="card-title"><%= product.name %></h5></li>
+  <% @user.products.each do |product| %>
+    <div class="flex-item">
         <% if product.image %>  
-          <li class="list-group-item"><img src="<%= product.image %>" alt="product_image" width="100" height="100"></li>
+          <img src="<%= product.image %>" alt="<%= product.name %>">
         <% end %>
-        <li class="list-group-item">Price: $<%= product.price %></li>
-        <li class="list-group-item">Description:<br><%= product.description %></li>
-        <li class="list-group-item"><a href="/products/<%= product.id %>/edit">Edit Product</a></li>
-        <li>
+        <h4 class="card-title"><%= product.name %></h4>
+        <hr>
+        <strong>Product Description:</strong><br>
+        <p class="card-text"><%= product.description %></p>
+        <hr>
+        <span><strong>Price: </strong>$<%= product.price %></span>
           <form method="post" action="/products/<%= product.id %>">
             <input type="hidden" id="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete Item" class="btn btn-primary" id="cart-button">
           </form>
-        </li>
-      </ul>
     </div>
-  </div>
-<% end %>
+  <% end %>
 </div>
 
 <div class="cart-footer">

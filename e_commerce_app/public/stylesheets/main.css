@@ -144,24 +144,57 @@
     border-radius: 5px;
   }
 
-  .logout-form {
+  .logout-form, .navbar a {
     padding: 15px;
-  }
-
-  .logout-form {
-    color: #9d9d9d;
+    color: #337ab7;
   }
 
   .logout-form:hover {
-    color: #fff;
+    color: #103f68;
+  }
+
+  .navbar {
+    height: 58px;
+  }
+
+  .navbar-bottom-border {
+    transition: .75s;
+  }
+
+  .navbar a:hover + .navbar-bottom-border {
+    background-color: #103f68;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    height: 4px;
+  }
+
+  .navbar a:active + .navbar-bottom-border {
+    background-color: #f7a559;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    height: 4px;
+  }
+
+  .navbar {
+    border-bottom: 1.5px solid lightgray;
+  }
+
+  .nav>li>a:hover {
+    color: #103f68;
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
   }
 
   .logout-button {
-    background-color: #222;
+    background-color: white;
     border: none;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+  }
+
+  .navbar {
+    background-color: white;
   }
 
   footer {
