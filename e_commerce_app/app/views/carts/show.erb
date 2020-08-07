@@ -15,35 +15,36 @@
   <% clear_notifications %>
 <% end %>
 
-
-<table class="table table-striped">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Item:</th>
-      <th scope="col">Price:</th>
-      <th scope="col">Remove from Cart:</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% n = 0 %>
-    <% current_user.cart.products.each do |product| %>
+<div id="cart">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <th scope="row"><%= n += 1 %></th>
-        <td><%= product.name %></td>
-        <td>$<%= product.price %></td>
-        <td>
-          <form method="post" action="/users/<%= current_user.id %>/cart">
-            <input type="hidden" name="_method" value="patch">
-            <input type="hidden" name="remove_product_id" value="<%= product.id %>">
-            <input type="submit" value="Remove" class="btn btn-primary">
-          </form>
-        </td>
+        <th scope="col">#</th>
+        <th scope="col">Item:</th>
+        <th scope="col">Price:</th>
+        <th scope="col">Remove from Cart:</th>
       </tr>
-    <% end %>
-    
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% n = 0 %>
+      <% current_user.cart.products.each do |product| %>
+        <tr>
+          <th scope="row"><%= n += 1 %></th>
+          <td><%= product.name %></td>
+          <td>$<%= product.price %></td>
+          <td>
+            <form method="post" action="/users/<%= current_user.id %>/cart">
+              <input type="hidden" name="_method" value="patch">
+              <input type="hidden" name="remove_product_id" value="<%= product.id %>">
+              <input type="submit" value="Remove" class="btn btn-primary">
+            </form>
+          </td>
+        </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+</div>
 
 <div class="cart-footer">
   <div class="cart-footer-item">
