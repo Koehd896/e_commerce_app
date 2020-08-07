@@ -2,10 +2,8 @@ class CartsController < ApplicationController
   
   get '/users/:id/cart' do
     #account for an empty cart
-    binding.pry
-    if session[:user_id]
-        @user = User.find(params[:id])
-        prices = @user.cart.products.map do |product|
+    if logged_in?
+        prices = current_user.cart.products.map do |product|
           product.price
         end
         @cart_total = prices.sum

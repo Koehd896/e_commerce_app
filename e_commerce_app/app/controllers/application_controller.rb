@@ -25,8 +25,8 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
-    def clear_notifications(user)
-      @user.notifications.each do |notification|
+    def clear_notifications
+      current_user.notifications.each do |notification|
         notification.destroy
       end
     end

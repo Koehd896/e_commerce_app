@@ -1,36 +1,44 @@
-<% if @user.name == "" %>
-<% name = @user.username %>
+<% if current_user.name == "" %>
+<% name = current_user.username %>
 <% else %>
-<% name = @user.name %>
+<% name = current_user.name %>
 <% end %>
 <h2><%= name %>'s Cart:</h2>
 
-<% if !@user.notifications.empty? %>
-  <% @user.notifications.each do |notification| %>
+<% if !current_user.notifications.empty? %>
+  <% current_user.notifications.each do |notification| %>
     <div class="alert alert-danger alert-dismissible">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong><%= notification.message %></strong> 
     </div>
   <% end %>
-  <% clear_notifications(@user) %>
+  <% clear_notifications %>
 <% end %>
 
 
-<table class="table">
+<table class="table table-striped">
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Item:</th>
       <th scope="col">Price:</th>
+      <th scope="col">Remove from Cart:</th>
     </tr>
   </thead>
   <tbody>
     <% n = 0 %>
-    <% @user.cart.products.each do |product| %>
+    <% current_user.cart.products.each do |product| %>
       <tr>
         <th scope="row"><%= n += 1 %></th>
         <td><%= product.name %></td>
         <td>$<%= product.price %></td>
+        <td>
+          <form method="post" action="/users/<%= current_user.id %>/cart">
+            <input type="hidden" name="_method" value="patch">
+            <input type="hidden" name="remove_product_id" value="<%= product.id %>">
+            <input type="submit" value="Remove" class="btn btn-primary">
+          </form>
+        </td>
       </tr>
     <% end %>
     
@@ -51,7 +59,7 @@
   </div>
 
   <div class="cart-footer-item">
-    Account Balance: $<%= @user.balance %>
+    Account Balance: $<%= current_user.balance %>
   </div>
 
   <div class="cart-footer-item">

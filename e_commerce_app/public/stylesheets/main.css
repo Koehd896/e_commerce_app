@@ -29,6 +29,10 @@
     line-height: 18px;
   }
 
+  .thead-light {
+    background-color: lightgray;
+  }
+
   .wrapper {
     background: white;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -170,12 +174,6 @@
     color: #9d9d9d;
   }
 
-  footer .container {
-    margin: auto;
-    width: 50%;
-    text-align: center;
-  }
-
   #flash-message {
     color: red;
   }
@@ -206,7 +204,7 @@
   }
 
   footer div {
-    width: 500px;
+    width: 150px;
     margin: auto;
   }
 
