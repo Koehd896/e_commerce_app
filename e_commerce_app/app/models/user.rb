@@ -7,10 +7,12 @@ class User < ActiveRecord::Base
   validates :username, :email, :password, presence: true
   validates :username, :email, uniqueness: true
 
-  after_initialize :set_balance
+  after_initialize :set_balance_and_cart
 
-  def set_balance
+  def set_balance_and_cart
     self.balance = 0
+    Cart.create(user_id: self.id)
+    self.save
   end
 
 end

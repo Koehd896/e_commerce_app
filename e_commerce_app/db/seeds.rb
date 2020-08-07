@@ -1,6 +1,22 @@
+User.all.each do |user|
+  user.destroy
+end
+
+Product.all.each do |product|
+  product.destroy
+end
+
+Cart.all.each do |cart|
+  cart.destroy
+end
+
+ProductCart.all.each do |productart|
+  productart.destroy
+end
+
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
 
-test_user = User.create(name: "test user", username: "test user name", email: "blah@test.com", balance: 0)
+test_user = User.create(name: "test user", username: "test user name", email: "blah@test.com", password: "123", balance: 0)
 
 products = [
   ["iMac", 600, "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/IMac_vector.svg/1200px-IMac_vector.svg.png"],

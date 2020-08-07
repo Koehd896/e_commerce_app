@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200804154919) do
+ActiveRecord::Schema.define(version: 20200807103226) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20200804154919) do
     t.string  "name"
     t.string  "email"
     t.string  "password_digest"
-    t.integer "cart_id"
     t.decimal "balance"
   end
 

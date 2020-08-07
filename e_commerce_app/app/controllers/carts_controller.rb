@@ -1,12 +1,14 @@
 class CartsController < ApplicationController
   
   get '/users/:id/cart' do
+    #account for an empty cart
+    binding.pry
     if session[:user_id]
-      @user = User.find(params[:id])
-      prices = @user.cart.products.map do |product|
-        product.price
-      end
-      @cart_total = prices.sum
+        @user = User.find(params[:id])
+        prices = @user.cart.products.map do |product|
+          product.price
+        end
+        @cart_total = prices.sum
       erb :'carts/show'
     else
       redirect to '/login'
@@ -36,7 +38,6 @@ class CartsController < ApplicationController
         end
 
         owner = product.user
-        binding.pry
         price = "Congratulations! '#{product.name}' has sold. Your account has been credited with $#{product.price}"
         Notification.create(message: price, user_id: owner.id)
 
