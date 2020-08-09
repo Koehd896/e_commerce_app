@@ -17,18 +17,16 @@
   </head>
   <body>
     <nav class="navbar">
-      <a class="navbar-brand" href="#" id="logo">
-        <img src="https://koehdecommerce.s3.us-east-2.amazonaws.com/LogoMakr_2i6K6w.png" width="30" height="30" alt="e commerce logo">
-      </a>
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">E Commerce</a>
+          <a class="navbar-brand" href="/">
+            <img id="logo" src="https://koehdecommerce.s3.us-east-2.amazonaws.com/LogoMakr_2i6K6w.png" width="30" height="30" alt="e commerce logo">E Commerce
+          </a>
         </div>
         <% if logged_in? %>
           <ul class="nav navbar-nav">
             <li>
-              <a href="/users/<%= current_user.id %>">Profile</a>
-              <div class="navbar-bottom-border"></div>
+              <a class="nav-btm-border" href="/users/<%= current_user.id %>">Profile</a>
             </li>
           </ul>
         <% end %>
@@ -45,20 +43,21 @@
           </form>
           <% if logged_in? %>
               <li>
-                <a href="/users/<%= current_user.id %>/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
-                <div class="navbar-bottom-border"></div>
+                <a class="nav-btm-border" href="/users/<%= current_user.id %>/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
               </li>
           <% end %>
           <% if logged_in? %>
-            <li id="logout-navbar">
-              <form class="logout-form" method="post" action="/logout">
+            <li>
+              <a href="#" class="nav-btm-border">
+              <form method="post" action="/logout">
                 <span class="glyphicon glyphicon-log-out"></span>
                 <input class="logout-button" type="submit" value="Log Out">
               </form>
+              </a>
             </li>
           <% else %>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a class="nav-btm-border" href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a class="nav-btm-border" href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <% end %>
         </ul>
       </div>

@@ -56,7 +56,6 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    binding.pry
     user = User.find_by(username: params["username-email"]) || User.find_by(email: params["username-email"])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
