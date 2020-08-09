@@ -21,14 +21,20 @@ class ProductsController < ApplicationController
   end
 
   post '/search' do
-    # allow search item to be part of product name (use regexp?)
     products = Product.all.select do |product|
-      product.name.include?(params[:search]) || product.description.include?(params[:search])
+      product.name.downcase.include?(params[:search].downcase) || product.description.downcase.include?(params[:search])
     end
-    product_ids = products.map {|product| product.id}.join(",")
-    # account for no search results
-    # store params[:search] for later use
-    redirect to "/search/#{product_ids}/#{params[:search]}"
+    if !products.empty?
+      product_ids = products.map {|product| product.id}.join(",")
+      redirect to "/search/#{product_ids}/#{params[:search]}"
+    else
+      redirect to "/search/no_results/#{params[:search]}"
+    end
+  end
+
+  get "/search/no_results/:criteria" do
+    @criteria = params[:criteria]
+    erb :no_results
   end
 
   post '/search/:ids/:filter' do
