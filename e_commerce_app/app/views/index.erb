@@ -39,15 +39,8 @@
         <h4 class="card-title"><%= product.name %></h4>
         <hr>
         <p>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <span><strong>Product Description:</strong></span>
-          </button>
+        <%= product.description %>
         </p>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            <%= product.description %>
-          </div>
-        </div>
         <hr>
         <span><strong>Price: </strong>$<%= product.price %></span>
         <% if logged_in? %>
